@@ -37,5 +37,24 @@ pipeline {
                 junit 'target/surefire-reports/*.xml'
             }
         }
+        
+        stage('jfrog'){
+            
+            steps{
+                script{
+                    def SERVER_ID = 'jfrog'
+                    def server = Artifactory.server SERVER_ID
+                    
+                    def uploadSpec = """{
+                        "files": [{
+                                    "pattern": "**/*.war",
+                                    "target": "pet"
+                        }]
+                    }"""
+                    
+                    server.upload(uploadSpec)
+                }
+            }
+        }
     }
 }
