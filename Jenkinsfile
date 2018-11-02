@@ -20,7 +20,7 @@ pipeline {
         stage('copy war to petwar dir'){
             
             steps{
-                sh 'sudo cp /var/lib/jenkins/workspace/pipeline/target/*.war /root/petwar'
+                sh 'sudo cp /var/lib/jenkins/workspace/pipeline/target/*.war /root/'
             }
         }
         
